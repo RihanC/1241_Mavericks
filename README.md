@@ -1,9 +1,9 @@
 #Overview
 VitalsCapture rPPG is a contactless cardiac monitoring system that uses a standard smartphone or webcam to estimate:
- Heart Rate (BPM)
- Heart Rate Variability (HRV)
- Cardiac Stress Level
- Signal Quality Confidence
+  Heart Rate (BPM)
+  Heart Rate Variability (HRV)
+  Cardiac Stress Level
+  Signal Quality Confidence
 
 It leverages Remote Photoplethysmography (rPPG) to extract subtle blood flow signals from facial video — eliminating the need for wearable devices.
 
