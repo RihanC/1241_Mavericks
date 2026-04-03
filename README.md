@@ -3,7 +3,7 @@ VitalsCapture rPPG is a contactless cardiac monitoring system that uses a standa
 
 1.Heart Rate (BPM)
 
-2. Heart Rate Variability (HRV)
+2.Heart Rate Variability (HRV)
 
 3.Cardiac Stress Level
 
