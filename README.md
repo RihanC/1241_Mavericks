@@ -1,98 +1,142 @@
 TEAM MAVERICKS!!
 
+VitalsCapture rPPG
+Contactless Cardiac Monitoring using Computer Vision
+
 Overview
-VitalsCapture rPPG is a contactless cardiac monitoring system that uses a standard smartphone or webcam to estimate:
+VitalsCapture rPPG is a browser-based system that estimates heart rate, heart rate variability (HRV), and stress levels using only a camera feed. It is built on the principle of remote photoplethysmography (rPPG), where subtle variations in skin color caused by blood flow are analyzed to extract physiological signals.
 
-1.Heart Rate (BPM)
+The goal is to provide a low-cost and accessible alternative for basic cardiac screening, especially in environments where traditional medical devices are not available.
 
-2.Heart Rate Variability (HRV)
+Problem
+Most cardiac monitoring solutions rely on dedicated hardware such as ECG sensors, smartwatches, or pulse oximeters. These are often:
 
-3.Cardiac Stress Level
+Expensive
 
-4.Signal Quality Confidence
+Not widely available in rural or low-resource settings
 
-It leverages Remote Photoplethysmography (rPPG) to extract subtle blood flow signals from facial video — eliminating the need for wearable devices.
+Difficult to scale for large populations
 
-🌍 Problem Statement
-Traditional cardiac monitoring requires hardware like ECG sensors or smartwatches, which are:
+At the same time, nearly every smartphone already has a camera capable of capturing useful physiological signals — but extracting those signals reliably is challenging due to noise from lighting, motion, and compression.
 
-❌ Expensive
+What This Project Does
+This system processes a short video (live or recorded) and extracts:
 
-❌ Not accessible in rural or disaster zones
+Heart Rate (BPM)
 
-❌ Not scalable for mass screening
+Heart Rate Variability (RMSSD)
 
-Our solution transforms any smartphone into a biometric sensor, enabling low-cost, accessible cardiac screening.
+Stress Level (based on HRV)
 
-💡 Key Features
-🔹 Contactless Monitoring
-Uses facial video (no physical contact required)
+Signal Quality Score
 
-🔹 Real-Time Analysis
-Live heart rate and stress detection
+If the signal quality is too low (e.g., due to motion or poor lighting), the system avoids returning unreliable results.
 
-🔹 HRV-Based Stress Detection
-Uses RMSSD & signal variability
+How It Works
+The camera captures a video stream
 
-🔹 Signal Quality Engine
-Detects:
+A facial region (ROI) is detected and tracked
 
-Poor lighting
+Subtle changes in the green channel are extracted frame-by-frame
 
-Motion noise
+Signal processing techniques filter noise
 
-Weak signal
+Peaks are detected to compute heart rate and HRV
 
-Refuses inaccurate outputs
+HRV features are used to estimate stress level
 
-🔹 Multi-Mode Support
-📷 Face-based rPPG (default)
+Results are displayed in real time on the frontend
 
-👉 Finger-based PPG (fallback for low light)
-
-🔹 Interactive Dashboard
-Live waveform visualization
-
-BPM + HRV display
-
-Stress classification
-
-🧠 How It Works
-Camera Feed
-   ↓
-Face Detection (ROI extraction)
-   ↓
-Green Channel Signal Extraction
-   ↓
-Noise Filtering (Bandpass / POS)
-   ↓
-Peak Detection
-   ↓
-BPM + HRV Calculation
-   ↓
-Stress Classification
-   ↓
-Frontend Visualization
-🛠️ Tech Stack
-🔹 Backend
+Tech Stack
+Backend
 Python
 
-FastAPI
+FastAPI (API layer)
 
-Uvicorn
+Uvicorn (server)
 
-OpenCV
+OpenCV (face detection and ROI tracking)
 
-NumPy
+NumPy (numerical computation)
 
-SciPy
+SciPy (signal processing)
 
-🔹 Frontend
+Frontend
 React (Vite)
 
 Tailwind CSS
 
-Recharts
+Recharts (data visualization)
 
-React Webcam
+React Webcam (camera access)
+
+Utilities
+html2canvas / jsPDF (report export)
+
+ESLint (code quality)
+
+Features
+Real-time camera-based monitoring
+
+Contactless measurement (no wearables required)
+
+HRV-based stress estimation
+
+Signal quality validation (prevents incorrect outputs)
+
+Visual waveform and metrics display
+
+Optional fallback to finger-based PPG (for low-light conditions)
+
+Running the Project
+Backend
+Bash
+
+pip install -r requirements.txt
+uvicorn main:app --reload
+Frontend
+Bash
+
+npm install
+npm run dev
+Usage
+Open the web app in a browser
+
+Allow camera access
+
+Stay relatively still for ~30 seconds
+
+View heart rate, HRV, and stress output
+
+Limitations
+Performance depends on lighting conditions
+
+Sensitive to excessive motion
+
+Not a replacement for medical-grade devices
+
+Intended for screening and educational purposes only
+
+Future Improvements
+Multi-region signal fusion (forehead + cheeks)
+
+Better motion compensation
+
+On-device (browser-based) signal processing
+
+Long-term trend tracking
+
+Clinical validation with datasets
+
+Use Cases
+Basic health screening in low-resource settings
+
+Telehealth support
+
+Stress monitoring
+
+Research and prototyping
+
+Note
+This project is built as a proof-of-concept to demonstrate how widely available devices can be used for physiological monitoring. It is not intended for clinical diagnosis.
 
