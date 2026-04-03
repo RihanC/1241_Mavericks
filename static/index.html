@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Real-time PPG BPM Monitor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1>PPG BPM Monitor</h1>
+            <div id="status-indicator" class="status">Connecting...</div>
+        </header>
+
+        <main>
+            <div class="video-preview-wrapper">
+                <video id="video" playsinline autoplay muted></video>
+                <canvas id="hidden-canvas" style="display:none;"></canvas>
+                <div id="finger-overlay" class="overlay hidden">
+                    <div class="prompt">Place Finger on Camera</div>
+                </div>
+            </div>
+
+            <div class="data-dashboard">
+                <div class="metric bpm-card">
+                    <span class="label">HEART RATE</span>
+                    <div class="value-container">
+                        <span id="bpm-value">--</span>
+                        <span class="unit">BPM</span>
+                    </div>
+                </div>
+                
+                <div class="metric signal-quality">
+                    <span class="label">SIGNAL QUALITY</span>
+                    <div id="signal-dots" class="dots-container">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="ppg-chart"></canvas>
+            </div>
+
+            <div class="controls">
+                <button id="start-btn" class="primary-btn">START MEASUREMENT</button>
+                <button id="stop-btn" class="secondary-btn hidden">STOP</button>
+            </div>
+            
+            <div id="instruction-box" class="instructions">
+                <p>1. Ensure your finger covers the entire camera lens.</p>
+                <p>2. Keep the flash on if possible (mobile only).</p>
+                <p>3. Hold steady for 5-10 seconds for calibration.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 PPG Research Lab</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
